@@ -5,12 +5,15 @@
  */
 package jpaexercise;
 
+import jars.PersonJpaController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -29,7 +32,14 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        EntityManagerFactory emf;
+        emf = Persistence.createEntityManagerFactory("JpaExercisePU");
+        Person dude = new Person();
+        dude.setFirstName("Ethan");
+        
+        PersonJpaController jpaPerson = new PersonJpaController(emf);
+        
+        jpaPerson.create(dude);
     }    
     
 }
